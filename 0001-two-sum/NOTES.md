@@ -17,3 +17,16 @@ For the first element nums[0] = 2, we check if its complement target - nums[0] =
 For the second element nums[1] = 7, we check if its complement target - nums[1] = 2 exists in the map. Since it does exist in the map, we return the indices mp[2] = 0 and i = 1 as a vector {0, 1}.
 ​
 Therefore, the code returns the expected output of [0, 1], indicating that the indices of the two elements that add up to the target are 0 and 1.
+​
+​
+**In python i wrote code below** and c++ code is there in code section
+​
+```
+class Solution:
+def twoSum(self, nums:List[int], target:int)-> List[int]:
+d = {}
+for i in range(len(nums)):
+d[nums[i]] = i
+if (target-nums[i]) in d:
+return([i.d[i]])
+```
