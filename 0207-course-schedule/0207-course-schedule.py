@@ -1,25 +1,27 @@
 class Solution:
     def canFinish(self, numCourses, prerequisites):
-        indegree = [0] * numCourses
-        adj = [[] for _ in range(numCourses)]
+        adj = [[] for i in range(numCourses)]
+        res,q = [],[]
+        indeg = [0]*numCourses
+        for u,v in prerequisites:
+            adj[v].append(u)
+            indeg[u]+=1
 
-        for prerequisite in prerequisites:
-            adj[prerequisite[1]].append(prerequisite[0])
-            indegree[prerequisite[0]] += 1
+        #return indeg
 
-        queue = deque()
         for i in range(numCourses):
-            if indegree[i] == 0:
-                queue.append(i)
+            if indeg[i]==0:
+                q.append(i)
 
-        nodesVisited = 0
-        while queue:
-            node = queue.popleft()
-            nodesVisited += 1
-
-            for neighbor in adj[node]:
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    queue.append(neighbor)
-
-        return nodesVisited == numCourses
+        while(q):
+            x = q.pop(0)
+            l = adj[x]
+            res.append(x)
+            for y in l:
+                indeg[y] -=1
+                if(indeg[y]==0):
+                    q.append(y)
+        if(len(res)==numCourses):
+            return True
+        else:
+            return False
